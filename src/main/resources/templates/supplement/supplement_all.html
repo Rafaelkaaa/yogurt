@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>All supplement</title>
+</head>
+<body>
+<h3><a href="/supplement/new">Add to card</a></h3>
+<h1 th:text = "'Curent ' + ${product.getProductType()} +' supplements: '"></h1>
+<div th:each="supplement : ${product.getSupplements()}" >
+    <p th:text = "${supplement.getName()}+ ' '+${supplement.getType()}"></p>
+</div>
+
+<h1>Supplements</h1>
+<table>
+    <thead>
+    <tr>
+    </thead>
+    <tbody>
+    <tr th:each="supplement : ${supplements}"></td>
+        <td th:text="${supplement.getName()}"></td>
+        <td><img th:src="${supplement.getImage}" style="width:50px;height:50px;"></img></td>
+        <td th:text="${supplement.getWeight()}"></td>
+        <td>
+            <form method="post" th:action="@{'/supplement/delete/'+ ${product.getId()} +'/'+ ${supplement.getId()}}">
+                <input type="hidden" th:field="${supplement.id}"/>
+                <input type="submit" value="Remove"/>
+            </form>
+        </td>
+        <td>
+            <form method="post" th:action="@{'/supplement/add/' + ${product.getId()} +'/'+ ${supplement.getId()}}">
+                <input type="hidden" th:field="${supplement.id}"/>
+                <input type="submit" value="Add"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
