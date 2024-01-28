@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping(path = "/supplement")
+@RequestMapping(path = "/product")
 public class ProductController {
 
 }

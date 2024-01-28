@@ -16,9 +16,9 @@ public class CustomExceptionHandler{
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
-    @ExceptionHandler(value = InvalidDataAccessApiUsageException.class)
-    public ResponseEntity<String> invalidDataAccessApiUsageHandle(NotFoundException ex) {
-        log.trace(ex.getMessage(), ex);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorMessage.SAME_SUPPLEMENTS);
-    }
+//    @ExceptionHandler(value = InvalidDataAccessApiUsageException.class)
+//    public ResponseEntity<String> invalidDataAccessApiUsageHandle(NotFoundException ex) {
+//        log.trace(ex.getMessage(), ex);
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ErrorMessage.SAME_SUPPLEMENTS);
+//    }
 }

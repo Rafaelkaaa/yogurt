@@ -9,6 +9,7 @@ import com.yogurt.repository.ProductRepo;
 import com.yogurt.repository.SupplementRepo;
 import com.yogurt.service.ProductService;
 import com.yogurt.service.SupplementProcessor;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
     ProductRepo productRepo;

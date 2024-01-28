@@ -6,6 +6,7 @@ import com.yogurt.exception.ErrorMessage;
 import com.yogurt.exception.NotFoundException;
 import com.yogurt.repository.SupplementRepo;
 import com.yogurt.service.SupplementService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class SupplementServiceImpl implements SupplementService {
     private SupplementRepo supplementRepo;

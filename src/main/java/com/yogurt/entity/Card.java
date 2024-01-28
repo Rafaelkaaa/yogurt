@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,11 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Card extends BaseEntity{
+    private BigDecimal cost;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "card_product",
             joinColumns = @JoinColumn(name = "card_id"))
-    private Set<Product> product;
-    private Long amount;
-    private BigDecimal cost;
+    private List<Product> products;
 }

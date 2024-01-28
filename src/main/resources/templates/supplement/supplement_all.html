@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <title>All supplement</title>
 </head>
 <body>
-<h3><a href="/supplement/new">Add to card</a></h3>
-<h1 th:text = "'Curent ' + ${product.getProductType()} +' supplements: '"></h1>
+<form id="AddToCard" method="post" th:action="@{'/card/add'}" th:object="${cardVO}">
+    <input type="hidden" id="productId" th:field="*{productId}" th:value="${product.id}"/>
+    <input type="hidden" id="cardId" th:field="*{cardId}" th:value="${cardVO.getCardId()}"/>
+    <input type="submit" value="Add to card"/>
+</form>
+
+<form method="get" th:action="@{'/card/' + ${cardVO.getCardId()}}">
+    <input type="submit" value="Open card"/>
+</form>
+
+<h1 th:text = "'Curent ' + ${product.getProductType().toLowerCase()} +' supplements: '"></h1>
 <div th:each="supplement : ${product.getSupplements()}" >
-    <p th:text = "${supplement.getName()}+ ' '+${supplement.getType()}"></p>
+    <p th:text = "${supplement.getName()}+ ' '+${supplement.getType().toLowerCase()}"></p>
 </div>
 
-<h1>Supplements</h1>
+<h2>Supplements</h2>
 <table>
-    <thead>
-    <tr>
-    </thead>
     <tbody>
     <tr th:each="supplement : ${supplements}"></td>
         <td th:text="${supplement.getName()}"></td>
-        <td><img th:src="${supplement.getImage}" style="width:50px;height:50px;"></img></td>
+        <td><img th:src="${supplement.getImage}" style="width:50px;height:50px;"></td>
         <td th:text="${supplement.getWeight()}"></td>
         <td>
             <form method="post" th:action="@{'/supplement/delete/'+ ${product.getId()} +'/'+ ${supplement.getId()}}">
-                <input type="hidden" th:field="${supplement.id}"/>
                 <input type="submit" value="Remove"/>
             </form>
         </td>
         <td>
             <form method="post" th:action="@{'/supplement/add/' + ${product.getId()} +'/'+ ${supplement.getId()}}">
-                <input type="hidden" th:field="${supplement.id}"/>
                 <input type="submit" value="Add"/>
             </form>
         </td>
