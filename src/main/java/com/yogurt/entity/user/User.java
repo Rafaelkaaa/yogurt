@@ -1,11 +1,8 @@
 package com.yogurt.entity.user;
 
 import com.yogurt.entity.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
 import lombok.*;
+import javax.persistence.*;
 
 @Entity
 @Data

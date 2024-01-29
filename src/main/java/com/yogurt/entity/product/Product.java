@@ -2,7 +2,7 @@ package com.yogurt.entity.product;
 
 import com.yogurt.entity.BaseEntity;
 import com.yogurt.entity.supplements.Supplement;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

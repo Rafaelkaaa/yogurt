@@ -1,11 +1,8 @@
 package com.yogurt.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-
+import javax.persistence.*;
 import java.util.UUID;
 
 @Data

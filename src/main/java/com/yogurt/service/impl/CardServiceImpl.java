@@ -2,7 +2,6 @@ package com.yogurt.service.impl;
 
 import com.yogurt.dto.CardDto;
 import com.yogurt.dto.CardVO;
-import com.yogurt.dto.ProductDto;
 import com.yogurt.entity.Card;
 import com.yogurt.entity.product.Product;
 import com.yogurt.exception.ErrorMessage;
@@ -11,13 +10,12 @@ import com.yogurt.repository.CardRepo;
 import com.yogurt.repository.ProductRepo;
 import com.yogurt.service.CardProcessor;
 import com.yogurt.service.CardService;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 

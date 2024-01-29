@@ -2,10 +2,7 @@ package com.yogurt.entity.supplements;
 
 
 import com.yogurt.entity.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

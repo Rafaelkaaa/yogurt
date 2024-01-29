@@ -4,12 +4,10 @@ import com.yogurt.dto.CardVO;
 import com.yogurt.service.CardService;
 import com.yogurt.service.ProductService;
 import com.yogurt.service.SupplementService;
-import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 ;
 
@@ -23,7 +21,7 @@ public class SupplementController {
 
     @GetMapping("/{productId}")
     public String findAll(@PathVariable String productId,
-                          @RequestParam(required = false) @Nullable String cardId,
+                          @RequestParam(required = false) String cardId,
                           Model model) {
         model.addAttribute("supplements", supplementService.findAll());
         model.addAttribute("product", productService.findById(productId));
