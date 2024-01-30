@@ -6,6 +6,7 @@ import com.yogurt.entity.supplements.Supplement;
 import com.yogurt.exception.ErrorMessage;
 import com.yogurt.exception.NotFoundException;
 import com.yogurt.repository.ProductRepo;
+import com.yogurt.repository.ProductTypeRepo;
 import com.yogurt.repository.SupplementRepo;
 import com.yogurt.service.ProductService;
 import com.yogurt.service.SupplementProcessor;
@@ -24,6 +25,7 @@ public class ProductServiceImpl implements ProductService {
     ProductRepo productRepo;
     SupplementRepo supplementRepo;
     ModelMapper modelMapper;
+    ProductTypeRepo productTypeRepo;
 
     @Override
     public void addSupplementToProduct(String productId, String supplementId) {
@@ -40,15 +42,17 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto findById(String id) {
         Optional<Product> product = productRepo.findById(UUID.fromString(id));
-        if (product.isPresent()){
+        if (product.isPresent()) {
             return modelMapper.map(product, ProductDto.class);
         }
         throw new NotFoundException(ErrorMessage.PRODUCT_NOT_FOUND_BY_ID + id);
     }
 
     @Override
-    public void save(ProductDto product) {
-        productRepo.save(modelMapper.map(product, Product.class));
+    public String save(String productTypeId) {
+        return productRepo.save(Product.builder()
+                .productType(productTypeRepo.findById(UUID.fromString(productTypeId)).get())
+                .build()).getId().toString();
     }
 
     private void processProduct(String productId, String supplementId, SupplementProcessor processor) {

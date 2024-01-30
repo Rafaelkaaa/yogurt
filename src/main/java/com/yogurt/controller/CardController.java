@@ -16,12 +16,19 @@ public class CardController {
     public String findAll(@PathVariable String cardId,
                           Model model) {
         model.addAttribute("card", cardService.findById(cardId));
-        return "/card/view";
+        model.addAttribute("cardVO", new CardVO());
+        return "/customers/card/view";
     }
 
     @PostMapping("/add")
     public String addProductToCard(@ModelAttribute CardVO cardVO) {
         cardService.addProductToCard(cardVO);
+        return "redirect:/card/" + cardVO.getCardId();
+    }
+
+    @PostMapping("/delete")
+    public String deleteProductToCard(@ModelAttribute CardVO cardVO) {
+        cardService.removeProductFromCard(cardVO);
         return "redirect:/card/" + cardVO.getCardId();
     }
 }

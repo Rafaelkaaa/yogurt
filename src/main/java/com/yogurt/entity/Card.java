@@ -5,7 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -19,5 +19,5 @@ public class Card extends BaseEntity{
     @JoinTable(
             name = "card_product",
             joinColumns = @JoinColumn(name = "card_id"))
-    private List<Product> products;
+    private Set<Product> products;
 }

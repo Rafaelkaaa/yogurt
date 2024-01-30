@@ -17,7 +17,7 @@
     <input type="submit" value="Open card"/>
 </form>
 
-<h1 th:text = "'Curent ' + ${product.getProductType().toLowerCase()} +' supplements: '"></h1>
+<h1 th:text = "'Curent ' + ${product.getProductType().getName().toLowerCase()} +' supplements: '"></h1>
 <div th:each="supplement : ${product.getSupplements()}" >
     <p th:text = "${supplement.getName()}+ ' '+${supplement.getType().toLowerCase()}"></p>
 </div>
@@ -30,12 +30,12 @@
         <td><img th:src="${supplement.getImage}" style="width:50px;height:50px;"></td>
         <td th:text="${supplement.getWeight()}"></td>
         <td>
-            <form method="post" th:action="@{'/supplement/delete/'+ ${product.getId()} +'/'+ ${supplement.getId()}}">
+            <form method="post" th:action="@{'/supplement/delete/'+ ${product.getId()} +'/'+ ${supplement.getId()}  + '?cardId=' + ${cardVO.getCardId()}}">
                 <input type="submit" value="Remove"/>
             </form>
         </td>
         <td>
-            <form method="post" th:action="@{'/supplement/add/' + ${product.getId()} +'/'+ ${supplement.getId()}}">
+            <form method="post" th:action="@{'/supplement/add/' + ${product.getId()} +'/'+ ${supplement.getId()}  + '?cardId=' + ${cardVO.getCardId()}}">
                 <input type="submit" value="Add"/>
             </form>
         </td>

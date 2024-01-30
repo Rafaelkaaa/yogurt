@@ -1,6 +1,7 @@
 package com.yogurt.mapping;
 
 import com.yogurt.dto.ProductDto;
+import com.yogurt.dto.ProductTypeDto;
 import com.yogurt.dto.SupplementDto;
 import com.yogurt.entity.product.Product;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class ProductDtoMapping extends AbstractConverter<Product, ProductDto> {
     protected ProductDto convert(Product product) {
         return ProductDto.builder()
                 .id(product.getId().toString())
-                .productType(product.getProductType().name())
+                .productType(modelMapper.map(product.getProductType(), ProductTypeDto.class))
                 .supplements(product.getSupplements()
                         .stream()
                         .map(supplement -> modelMapper.map(supplement, SupplementDto.class))

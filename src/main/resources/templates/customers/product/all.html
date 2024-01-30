@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h1>Choose product</h1>
+<table>
+    <tbody>
+    <tr th:each="productType : ${productTypes}"></td>
+        <td th:text="${productType.getName()}"></td>
+        <td th:text="${productType.getCost()}"></td>
+        <td>
+        <form method="post" th:action="@{'/product/' + ${productType.getId()} + '?cardId=' + ${cardId}}">
+            <input type="submit" value="Choose"/>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

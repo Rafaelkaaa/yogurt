@@ -29,10 +29,9 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public String save() {
-        String cardId = cardRepo.save(Card.builder()
-                        .cost(new BigDecimal(0))
+        return cardRepo.save(Card.builder()
+                .cost(new BigDecimal(0))
                 .build()).getId().toString();
-        return cardId;
     }
 
     @Override
@@ -48,26 +47,26 @@ public class CardServiceImpl implements CardService {
     public void addProductToCard(CardVO cardVO) {
             CardProcessor processor = (card, product) -> {
                 card.getProducts().add(product);
-            card.setCost(card.getCost().add(product.getCost()));
+            card.setCost(card.getCost().add(product.getProductType().getCost()));
             };
             processCard(cardVO.getCardId(), cardVO.getProductId(), processor);
     }
 
     @Override
-    public void removeProductFromCard(String cardId, String productId) {
+    public void removeProductFromCard(CardVO cardVO) {
         CardProcessor processor = (card,product) -> {
             card.getProducts().remove(product);
-            card.setCost(card.getCost().subtract(product.getCost()));
+            card.setCost(card.getCost().subtract(product.getProductType().getCost()));
         };
-        processCard(cardId, productId, processor);
+        processCard(cardVO.getCardId(), cardVO.getProductId(), processor);
     }
 
-    private void processCard(String productId, String supplementId, CardProcessor processor) {
-        Optional<Card> card = cardRepo.findById(UUID.fromString(productId));
-        Optional<Product> product = productRepo.findById(UUID.fromString(supplementId));
+    private void processCard(String cardId, String productId, CardProcessor processor) {
+        Optional<Card> card = cardRepo.findById(UUID.fromString(cardId));
+        Optional<Product> product = productRepo.findById(UUID.fromString(productId));
         if (card.isPresent() && product.isPresent()) {
             processor.process(card.get(), product.get());
-            productRepo.save(product.get());
+            cardRepo.save(card.get());
         }
     }
 }

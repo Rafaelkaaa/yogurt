@@ -2,28 +2,24 @@ package com.yogurt.entity.product;
 
 import com.yogurt.entity.BaseEntity;
 import com.yogurt.entity.supplements.Supplement;
-import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.math.BigDecimal;
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
+
 @Entity
+@Builder
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product extends BaseEntity {
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     private ProductType productType;
-
-    private BigDecimal cost;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "product_supplement",
             joinColumns = @JoinColumn(name = "product_id"))
-    private List<Supplement> supplements;
+    private Set<Supplement> supplements;
 }

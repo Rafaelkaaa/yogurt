@@ -6,5 +6,5 @@ public interface ProductService {
     void addSupplementToProduct(String productId, String supplementId);
     void removeSupplementFromProduct(String productId, String supplementId);
     ProductDto findById(String id);
-    void save(ProductDto product);
+    String save(String productTypeId);
 }
