@@ -1,6 +1,7 @@
 package com.yogurt.service.impl;
 
 import com.yogurt.dto.SupplementDto;
+import com.yogurt.entity.product.ProductType;
 import com.yogurt.entity.supplements.Supplement;
 import com.yogurt.exception.ErrorMessage;
 import com.yogurt.exception.NotFoundException;
@@ -49,5 +50,10 @@ public class SupplementServiceImpl implements SupplementService {
     public Page<SupplementDto> findAll(Pageable pageable) {
         return supplementRepo.findAll(pageable)
                 .map(supplement -> modelMapper.map(supplement, SupplementDto.class));
+    }
+
+    @Override
+    public void save(SupplementDto supplementDto) {
+        supplementRepo.save(modelMapper.map(supplementDto, Supplement.class));
     }
 }

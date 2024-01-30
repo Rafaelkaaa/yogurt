@@ -15,4 +15,5 @@ public interface SupplementService {
 
     List<SupplementDto> findAll();
     Page<SupplementDto> findAll(Pageable pageable);
+    void save(SupplementDto supplementDto);
 }

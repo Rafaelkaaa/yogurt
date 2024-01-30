@@ -8,12 +8,12 @@
 <h1>Choose product</h1>
 <table>
     <tbody>
-    <tr th:each="productType : ${productTypes}"></td>
+    <tr class="table table-striped" th:each="productType : ${productTypes}"></td>
         <td th:text="${productType.getName()}"></td>
         <td th:text="${productType.getCost()}"></td>
         <td>
         <form method="post" th:action="@{'/product/' + ${productType.getId()} + '?cardId=' + ${cardId}}">
-            <input type="submit" value="Choose"/>
+            <button class="btn btn-dark" type="submit" value="Choose"></button>
         </form>
         </td>
     </tr>

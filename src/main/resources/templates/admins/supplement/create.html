@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New supplement</title>
+</head>
+<body>
+<h1>Create supplement</h1>
+<form method='post' th:action="@{/admin/supplement/new}" th:object="${supplement}">
+
+  <label for='image'>Image link:</label><br>
+  <input type='text' id='image' th:field="*{image}"><br><br>
+
+  <label for='name'>Name:</label><br>
+  <input type='text' id='name' th:field="*{name}"/><br><br>
+
+  <label for='weight'>Weight:</label><br>
+  <input type='text' id='weight' th:field="*{weight}"/><br><br>
+
+  <label for="type">Type:</label>
+  <select id="type" name="type">
+    <th:block th:each="supplementType : ${supplementTypes}">
+      <option th:value="${supplementType.name()}" th:text="${supplementType.name()}"></option>
+    </th:block>
+  </select>
+  <button type="submit">Add supplement</button>
+</form>
+</body>
+</html>

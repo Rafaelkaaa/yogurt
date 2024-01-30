@@ -1,6 +1,7 @@
 package com.yogurt.service.impl;
 
 import com.yogurt.dto.ProductTypeDto;
+import com.yogurt.entity.product.ProductType;
 import com.yogurt.repository.ProductTypeRepo;
 import com.yogurt.service.ProductTypeService;
 import lombok.AllArgsConstructor;
@@ -22,5 +23,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
                 .stream()
                 .map(productType ->modelMapper.map(productType, ProductTypeDto.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void save(ProductTypeDto productTypeDto) {
+        productTypeRepo.save(modelMapper.map(productTypeDto, ProductType.class));
     }
 }

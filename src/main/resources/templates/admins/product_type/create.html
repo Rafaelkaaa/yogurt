@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>New product type</title>
 </head>
 <body>
+<h1>Create product type</h1>
+<form method='post' th:action="@{/admin/product_type/new}" th:object="${productType}">
 
+    <label for='cost'>Product type cost:</label><br>
+    <input type='text' id='cost' th:field="*{cost}"><br><br>
+
+    <label for='name'>Name:</label><br>
+    <input type='text' id='name' th:field="*{name}"/><br><br>
+
+    <input type='submit' value='Create'/>
+</form>
 </body>
 </html>
