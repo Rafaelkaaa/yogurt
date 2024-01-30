@@ -29,7 +29,7 @@
             <tr>
                 <td th:text="${supplement.getName()}"></td>
                 <td><img th:src="${supplement.getImage}" style="width:50px;height:50px;"/></td>
-                <td th:text="${supplement.getWeight()}"></td>
+                <td th:text="${supplement.getWeight() + ' grams'}"></td>
             </tr>
             </tbody>
         </li>

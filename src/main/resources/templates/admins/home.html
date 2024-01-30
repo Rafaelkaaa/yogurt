@@ -2,21 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>New product type</title>
+    <title>Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-<h1>Create product type</h1>
-<form method='post' th:action="@{/admin/product_type/new}" th:object="${productType}">
 
-    <label class="form-check-label" for='cost'>Product type cost:</label><br>
-    <input class="form-control" type='text' id='cost' th:field="*{cost}"><br><br>
-
-    <label class="form-check-label" for='name'>Name:</label><br>
-    <input class="form-control" type='text' id='name' th:field="*{name}"/><br><br>
-
-    <button class="btn btn-dark" type='submit'>Create</button>
+<form method="get" th:action="@{'/admin/product_type/new'}">
+    <button class="btn btn-dark" type="submit">Create product type</button>
 </form>
+
+<form method="get" th:action="@{'/admin/supplement/new'}">
+    <button class="btn btn-dark" type="submit">Create supplement</button>
+</form>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

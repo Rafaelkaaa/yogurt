@@ -22,6 +22,11 @@ public class AdminController {
     ProductTypeService productTypeService;
     SupplementService supplementService;
 
+    @GetMapping()
+    public String adminHome() {
+        return "/admins/home";
+    }
+
     @GetMapping("/product_type/new")
     public String newProductType(Model model) {
         model.addAttribute("productType", new ProductTypeDto());
